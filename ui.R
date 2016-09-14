@@ -8,10 +8,10 @@
 library(shiny)
 
 shinyUI(fluidPage(
-
+  
   # Application title
   titlePanel("Columbia River Salmon Runs"),
-
+  
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
@@ -21,32 +21,32 @@ shinyUI(fluidPage(
       hr(),
       selectInput(inputId="damSelection",
                   label="Dam",
-                  choices=c("Willamette Falls" = "Willamette Falls",
-                            "Little Goose Dam" = "Little Goose Dam",
-                            "Lower Granite Dam" = "Lower Granite Dam",
-                            "Priest Rapids Dam" = "Priest Rapids Dam",
-                            "Wanapum Dam" = "Wanapum Dam",
-                            "Rock Island Dam" = "Rock Island Dam",
-                            "Rocky Reach Dam" = "Rocky Reach Dam",
-                            "Wells Dam" = "Wells Dam",
-                            "Bonneville Dam" = "Bonneville Dam",
-                            "The Dalles Dam" = "The Dalles Dam",
-                            "John Day Dam" = "John Day Dam",
-                            "McNary Dam" = "McNary Dam",
-                            "Ice Harbor Dam" = "Ice Harbor Dam",
-                            "Lower Monumental Dam" = "Lower Monumental Dam")),
+                  choices=c("Bonneville Dam"=4,
+                            "Ice Harbor Dam"=8,
+                            "John Day Dam"=6,
+                            "Little Goose Dam"=10,
+                            "Lower Granite Dam"=11,
+                            "Lower Monumental Dam"=9,
+                            "McNary Dam"=7,
+                            "Priest Rapids Dam"=12,
+                            "Rock Island Dam"=14,
+                            "Rocky Reach Dam"=15,
+                            "The Dalles Dam"=5,
+                            "Wanapum Dam"=13,
+                            "Wells Dam"=16,
+                            "Willamette Falls"=3)),
       hr(),
       checkboxGroupInput("salmonCheck",
-                   label="Fish",
-                   choices= c("Chinook Adult" = 1,
-                              "Chinook Jack" = 2,
-                              "Steelhead" = 3,
-                              "Wild Steelhead" = 4,
-                              "Shad" = 5,
-                              "Sockeye" = 6,
-                              "Lamprey" = 7,
-                              "Coho Adult" = 8,
-                              "Coho Jack" = 9)),
+                         label="Fish",
+                         choices= c("Chinook Adult" = 1,
+                                    "Chinook Jack" = 2,
+                                    "Steelhead" = 3,
+                                    "Wild Steelhead" = 4,
+                                    "Shad" = 5,
+                                    "Sockeye" = 6,
+                                    "Lamprey" = 7,
+                                    "Coho Adult" = 8,
+                                    "Coho Jack" = 9)),
       hr(),
       textInput(inputId = "search",
                 label = "Search By City",
@@ -58,7 +58,7 @@ shinyUI(fluidPage(
                   max = 50,
                   value = 30)
     ),
-
+    
     # Show a plot of the generated distribution
     mainPanel(
       plotOutput("distPlot"),

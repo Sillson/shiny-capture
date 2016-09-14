@@ -4,7 +4,10 @@
 #
 # http://shiny.rstudio.com
 #
-
+library(dplyr)
+library(ggplot2)
+library(rgdal)
+library(RColorBrewer)
 library(shiny)
 
 shinyServer(function(input, output) {
@@ -14,10 +17,12 @@ shinyServer(function(input, output) {
   })
 
   output$distPlot <- renderPlot({
+    
+    damData <- runData[runData$dam_id == input$damSelection, ]
 
     # generate bins based on input$bins from ui.R
     x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    bins <- seq(min(x), max(x), length.out = sum(strtoi(input$salmonCheck)) + 1)
 
     # draw the histogram with the specified number of bins
     hist(x, breaks = bins, col = 'darkgray', border = 'white')

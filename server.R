@@ -5,6 +5,7 @@
 # http://shiny.rstudio.com
 #
 library(dplyr)
+library(tidyr)
 library(ggplot2)
 library(rgdal)
 library(RColorBrewer)
@@ -18,14 +19,11 @@ shinyServer(function(input, output) {
 
   output$distPlot <- renderPlot({
     
-    damData <- runData[runData$dam_id == input$damSelection, ]
+    damData <- filter(runData, dam_id == input$damSelection)
+    damData <- filter(damData, count_date > input$dateRange[1] & count_date < input$dateRange[2])
 
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = sum(strtoi(input$salmonCheck)) + 1)
-
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    ggplot(damData, aes(count_date)) +
+      geom_line(data=damData[damData$fish_id==strtoi(input$salmonCheck), ], aes(y = count))
 
   })
 

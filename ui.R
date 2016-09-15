@@ -38,6 +38,7 @@ shinyUI(fluidPage(
       hr(),
       checkboxGroupInput("salmonCheck",
                          label="Fish",
+                         selected = 1,
                          choices= c("Chinook Adult" = 1,
                                     "Chinook Jack" = 2,
                                     "Steelhead" = 3,
@@ -46,17 +47,8 @@ shinyUI(fluidPage(
                                     "Sockeye" = 6,
                                     "Lamprey" = 7,
                                     "Coho Adult" = 8,
-                                    "Coho Jack" = 9)),
-      hr(),
-      textInput(inputId = "search",
-                label = "Search By City",
-                value = ""),
-      hr(),
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+                                    "Coho Jack" = 9))
+     
     ),
     
     # Show a plot of the generated distribution
